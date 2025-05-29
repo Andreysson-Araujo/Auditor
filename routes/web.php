@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,11 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Rota protegida de exemplo
-Route::get('/dashboard', function () {
-    return 'Você está logado!';
-})->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/relatorios', function () {
+    return 'Página de Relatórios';
+})->name('relatorios');
+
+Route::get('/manifestacoes', function () {
+    return 'Página de Manifestações';
+})->name('manifestacoes');

@@ -1,0 +1,53 @@
+.container {
+    margin-top: 20px;
+    align-items: center;
+    text-align: center;
+}
+header {
+    background-color: #dededf;
+    color: rgb(116, 116, 116);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+header nav a {
+    margin-right: 1rem;
+    color: rgb(95, 95, 95);
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+header form {
+    display: inline;
+}
+
+header form button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+header form button:hover {
+    text-decoration: underline;
+}
