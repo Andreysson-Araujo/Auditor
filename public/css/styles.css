@@ -51,3 +51,26 @@ nav a {
 header form button:hover {
     text-decoration: underline;
 }
+
+.manifestacao-container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.manifestacao-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.manifestacao-table th,
+.manifestacao-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.manifestacao-table th {
+    background-color: #f2f2f2;
+}

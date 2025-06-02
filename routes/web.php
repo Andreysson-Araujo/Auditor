@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ManifestacaoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,5 @@ Route::get('/relatorios', function () {
     return 'Página de Relatórios';
 })->name('relatorios');
 
-Route::get('/manifestacoes', function () {
-    return 'Página de Manifestações';
-})->name('manifestacoes');
+Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');
+

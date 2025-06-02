@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Servidor;
 
 class Formulario extends Model
 {
@@ -23,7 +24,7 @@ class Formulario extends Model
 
     public function servidor()
     {
-        //return $this->belongsTo(Servidores::class, 'servidores_id');
+        return $this->belongsTo(Servidor::class, 'servidores_id');
     }
 }
 
