@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManifestacaoController;
+use App\Http\Controllers\RelatorioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +30,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Rota protegida de exemplo
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
-Route::get('/relatorios', function () {
-    return 'Página de Relatórios';
-})->name('relatorios');
+Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+
 
 Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');
 
