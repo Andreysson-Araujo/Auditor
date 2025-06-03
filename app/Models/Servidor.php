@@ -9,10 +9,17 @@ class Servidor extends Model
 {
     use HasFactory;
 
+    protected $table = 'servidores';
+
     protected $fillable = [
         'nome',
-        'orgao',
+        'orgao_id',
     ];
+
+    public function orgao()
+    {
+        return $this->belongsTo(Orgao::class, 'orgao_id');
+    }
 
     public function formularios()
     {

@@ -35,3 +35,4 @@ Route::get('/relatorios', function () {
 
 Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');
 
+Route::get('/manifestacao/{id}', [ManifestacaoController::class, 'ver'])->name('manifestacao.ver');

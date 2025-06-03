@@ -55,22 +55,42 @@ header form button:hover {
 .manifestacao-container {
     padding: 2rem;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 50px auto; /* centraliza horizontalmente */
+    text-align: center; /* centraliza o conteúdo interno */
 }
 
 .manifestacao-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto; /* centraliza a tabela caso não esteja com 100% */
 }
 
 .manifestacao-table th,
 .manifestacao-table td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center; /* centraliza o texto das células */
 }
 
 .manifestacao-table th {
     background-color: #f2f2f2;
+}
+
+.btn-ver {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #3490dc;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-ver:hover {
+    background-color: #8b8a8a;
+    color: #000;
+    text-decoration: none;
 }
