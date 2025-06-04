@@ -31,6 +31,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 // Rota protegida de exemplo
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
+Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
+
 
 
 Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');

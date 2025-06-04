@@ -11,7 +11,7 @@
     <header class="header-top">
         <div class="logo">Sistema Auditor</div>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a href="{{ route('relatorios') }}">Relatórios</a>
+            <a href="{{ route('relatorios.index') }}">Relatórios</a>
             <a href="{{ route('manifestacoes') }}">Manifestações</a>
             <a href="{{ route('dashboard') }}">Dashboard</a>
             <form action="{{ route('logout') }}" method="POST" class="logout-form">
