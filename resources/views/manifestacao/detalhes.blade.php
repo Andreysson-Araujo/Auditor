@@ -63,5 +63,6 @@
 
     <br>
     <a href="{{ route('manifestacoes') }}" class="btn-ver">Voltar</a>
+    <a href="{{ route('manifestacoes.auditar') }}" class="btn-aud">Auditar</a>
 </div>
 @endsection

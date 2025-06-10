@@ -38,3 +38,6 @@ Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatori
 Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');
 
 Route::get('/manifestacao/{id}', [ManifestacaoController::class, 'ver'])->name('manifestacao.ver');
+Route::get('/manifestacoes/auditar', function () {
+    return view('auditarManifestacao');
+})->name('manifestacoes.auditar');

@@ -94,3 +94,21 @@ header form button:hover {
     color: #000;
     text-decoration: none;
 }
+
+
+.btn-aud {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #035700;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-aud:hover {
+    background-color: #8b8a8a;
+    color: #000;
+    text-decoration: none;
+}

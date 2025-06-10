@@ -13,13 +13,36 @@
 
     <form method="GET" action="" class="mb-4">
         <label>Data Início:</label>
-        <input type="date" name="data_inicio" required>
-
+        <input type="date" name="data_inicio" id="data_inicio" required>
+        <span id="data_inicio_formatada" style="margin-left: 10px; font-style: italic; color: #555;"></span>
+    
+        <br>
+    
         <label>Data Fim:</label>
-        <input type="date" name="data_fim" required>
-
+        <input type="date" name="data_fim" id="data_fim" required>
+        <span id="data_fim_formatada" style="margin-left: 10px; font-style: italic; color: #555;"></span>
+    
+        <br><br>
+    
         <button type="submit" class="btn btn-primary">Filtrar</button>
     </form>
+    
+    <script>
+      function formatarData(data) {
+        if (!data) return "";
+        const [ano, mes, dia] = data.split("-");
+        return `${dia}/${mes}/${ano}`;
+      }
+    
+      document.getElementById("data_inicio").addEventListener("change", function () {
+        document.getElementById("data_inicio_formatada").textContent = formatarData(this.value);
+      });
+    
+      document.getElementById("data_fim").addEventListener("change", function () {
+        document.getElementById("data_fim_formatada").textContent = formatarData(this.value);
+      });
+    </script>
+    
 
     @if($formulariosFiltrados->isNotEmpty())
     <h3>Manifestações no período selecionado:</h3>
@@ -37,7 +60,7 @@
                 <tr>
                     <td>{{ $formulario->servidor->orgao->nome ?? 'Não informado' }}</td>
                     <td>{{ $formulario->classificate }}</td>
-                    <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $formulario->created_at->format('d/m/Y') }}</td>
                 </tr>
             @endforeach
         </tbody>

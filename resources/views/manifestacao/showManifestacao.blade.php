@@ -10,7 +10,7 @@
     <table class="manifestacao-table">
         <thead>
             <tr>
-                <th>Orgão</th>
+                <th>Resgistro</th>
                 <th>Classificação</th>
                 <th>Data</th>
                 <th>Auditar</th>
@@ -20,7 +20,7 @@
         <tbody>
             @foreach($formularios as $formulario)
                 <tr>
-                   <td>{{$formulario->servidor->orgao->nome ?? 'Não Informado'}}</td>
+                   <td>{{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</td>
                    <td>{{ $formulario->classificate }}</td>
                    <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
                    <td>
