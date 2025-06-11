@@ -21,9 +21,12 @@ class ManifestacaoController extends Controller
     $formulario = Formulario::with('servidor.orgao')->findOrFail($id);
     return view('manifestacao.detalhes', compact('formulario'));
 }
-public function auditar()
+public function auditar($id)
 {
-    return view('auditarManifestacao');
-}
+
+    $formulario = Formulario::findOrFail($id);
+    $formulario->auditado = true;
+    $formulario->save();
+    return redirect()->route('manifestacoes')->with('success', 'Formulário auditado com sucesso!');}
 
 }

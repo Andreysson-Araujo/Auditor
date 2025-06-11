@@ -5,6 +5,12 @@
 
 
 <div class="manifestacao-container">
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
     <h1>Registro de Manifestações</h1>
     @if(count($formularios) > 0)
     <table class="manifestacao-table">

@@ -63,6 +63,10 @@
 
     <br>
     <a href="{{ route('manifestacoes') }}" class="btn-ver">Voltar</a>
-    <a href="{{ route('manifestacoes.auditar') }}" class="btn-aud">Auditar</a>
+    <form action="{{ route('manifestacoes.auditar', $formulario->id) }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="btn-aud">Auditar</button>
+    </form>
+    
 </div>
 @endsection
