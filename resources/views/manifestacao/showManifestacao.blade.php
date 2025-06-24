@@ -26,7 +26,13 @@
         <tbody>
             @foreach($formularios as $formulario)
                 <tr>
-                   <td>{{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</td>
+                    <td>
+                        @if($formulario->auditado)
+                            <span title="Auditado" style="color: green; margin-left: 5px;">✔️</span>
+                        @endif
+                        {{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}
+                    </td>
+                    
                    <td>{{ $formulario->classificate }}</td>
                    <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
                    <td>

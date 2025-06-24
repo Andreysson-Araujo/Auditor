@@ -99,10 +99,10 @@ header form button:hover {
 .btn-aud {
     display: inline-block;
     padding: 10px 18px;
-    background-color: #035700;
-    color: rgb(255, 255, 255);
+    background-color: #019101;
+    color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 14px;
     transition: background-color 0.3s;
 }
@@ -111,4 +111,11 @@ header form button:hover {
     background-color: #8b8a8a;
     color: #000;
     text-decoration: none;
+}
+
+.auditado-ok{
+    margin-left: 8px;
+    color: green;
+    font-weight: bold;
+
 }
