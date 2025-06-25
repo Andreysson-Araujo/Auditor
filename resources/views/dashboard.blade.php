@@ -14,11 +14,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         #grafico-container {
-            width: 300px;
-            
+            width: 600px; /* Aumenta a largura */
             margin: 0 auto;
         }
+    
+        #grafico {
+            height: 400px; /* Define uma altura maior */
+        }
     </style>
+    
 </head>
 <body>
     <h1 style="margin-top:100px ;text-align: center;">Dashboard</h1>

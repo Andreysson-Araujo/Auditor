@@ -28,7 +28,7 @@
                 <tr>
                     <td>
                         @if($formulario->auditado)
-                            <span title="Auditado" style="color: green; margin-left: 5px;">✔️</span>
+                            <span title="Auditado" style="color: green; margin-left: 5px;">✅</span>
                         @endif
                         {{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}
                     </td>
