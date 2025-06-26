@@ -8,12 +8,18 @@ class ManifestacaoController extends Controller
 {
     public function show()
     {
-        $formularios = Formulario::with('servidor.orgao')
-            ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
-
-        return view('manifestacao.showManifestacao', compact('formularios'));
+        $data = request('data'); // Pega a data da URL
+    
+        $query = Formulario::with('servidor.orgao')
+            ->orderBy('created_at', 'desc');
+    
+        if ($data) {
+            $query->whereDate('created_at', $data);
+        }
+    
+        $formularios = $query->take(10)->get();
+    
+        return view('manifestacao.showManifestacao', compact('formularios', 'data'));
     }
 
     public function ver($id)

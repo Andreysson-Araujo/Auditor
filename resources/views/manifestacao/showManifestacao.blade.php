@@ -10,8 +10,14 @@
         {{ session('success') }}
     </div>
 @endif
-
     <h1>Registro de Manifestações</h1>
+
+    <form action="{{route('manifestacoes')}}" method="GET" class="form-filtro-data">
+        <label for="data" class="label-filtro">Filtrar por data:</label>
+        <input type="date" name="data" id="data" value="{{request('data')}}">
+        <button type="submit">Filtrar</button>
+    </form>
+
     @if(count($formularios) > 0)
     <table class="manifestacao-table">
         <thead>

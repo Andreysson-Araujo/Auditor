@@ -119,3 +119,16 @@ header form button:hover {
     font-weight: bold;
 
 }
+
+.form-filtro-data{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.label-filtro {
+    font-weight: bold;
+    color: #444;
+}
