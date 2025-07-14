@@ -17,7 +17,7 @@ class ManifestacaoController extends Controller
             $query->whereDate('created_at', $data);
         }
     
-        $formularios = $query->take(10)->get();
+        $formularios = $query->paginate(10);
     
         return view('manifestacao.showManifestacao', compact('formularios', 'data'));
     }

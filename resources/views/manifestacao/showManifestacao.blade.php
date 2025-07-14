@@ -48,6 +48,9 @@
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-4">
+        {{$formularios->appends(request()->query())->links()}}
+    </div>
 @else
     <p>Nenhuma manifestação encontrada.</p>
 @endif
