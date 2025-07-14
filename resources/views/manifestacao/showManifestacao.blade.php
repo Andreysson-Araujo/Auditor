@@ -15,7 +15,7 @@
     <form action="{{route('manifestacoes')}}" method="GET" class="form-filtro-data">
         <label for="data" class="label-filtro">Filtrar por data:</label>
         <input type="date" name="data" id="data" value="{{request('data')}}">
-        <button type="submit">Filtrar</button>
+        <button class="btn btn-secondary" type="submit">Filtrar</button>
     </form>
 
     @if(count($formularios) > 0)
@@ -36,7 +36,7 @@
                         @if($formulario->auditado)
                             <span title="Auditado" style="color: green; margin-left: 5px;">✅</span>
                         @endif
-                        {{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}
+                       <span>{{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</span> 
                     </td>
                     
                    <td>{{ $formulario->classificate }}</td>
