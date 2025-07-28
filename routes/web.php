@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManifestacaoController;
 use App\Http\Controllers\RelatorioController;
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +40,7 @@ Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('man
 
 Route::get('/manifestacao/{id}', [ManifestacaoController::class, 'ver'])->name('manifestacao.ver');
 Route::post('/manifestacoes/auditar/{id}', [ManifestacaoController::class, 'auditar'])->name('manifestacoes.auditar');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/feedbacks/{id}', [FeedbackController::class, 'show'])->name('feedbacks.show');
+});
 

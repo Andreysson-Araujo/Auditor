@@ -5,14 +5,14 @@
 @section('content')
     <h1 class="marginGraph" >Dashboard - Servidores por Nível</h1>
 
-    <!-- Gráfico menor e centralizado -->
-    <div id="grafico-container" style="margin-bottom: 50px; width: 500px; margin: 0 auto;">
-        <canvas id="grafico" width="300" height="300"></canvas>
+    <!-- Gráfico levemente maior e centralizado -->
+    <div id="grafico-container" style="margin-bottom: 50px; width: 400px; margin: 0 auto;">
+        <canvas id="grafico" width="400" height="400"></canvas>
     </div>
 
     <!-- Tabela com totais -->
     <div style="max-width: 900px; margin: 0 auto;">
-        <h2 style="text-align: center;">Resumo por Nível</h2>
+        <h2 style="text-align: center; margin-top: 20px">Resumo por Nível</h2>
         <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; border-collapse: collapse; text-align: center;">
             <thead style="background-color: #f0f0f0;">
                 <tr>
@@ -59,7 +59,7 @@
                 }]
             },
             options: {
-                responsive: false, // importante para manter o tamanho fixo
+                responsive: false, // mantém tamanho fixo
                 plugins: {
                     legend: {
                         position: 'bottom'
