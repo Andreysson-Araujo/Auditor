@@ -30,17 +30,19 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Rota protegida de exemplo
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios');
 Route::get('/relatorios', [RelatorioController::class, 'index'])->name('relatorios.index');
 
 
-
+//Manifestações
 Route::get('/manifestacoes', [ManifestacaoController::class, 'show'])->name('manifestacoes');
-
 Route::get('/manifestacao/{id}', [ManifestacaoController::class, 'ver'])->name('manifestacao.ver');
 Route::post('/manifestacoes/auditar/{id}', [ManifestacaoController::class, 'auditar'])->name('manifestacoes.auditar');
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/feedbacks/{id}', [FeedbackController::class, 'show'])->name('feedbacks.show');
-});
 
+//Feedbacks
+
+Route::post('/feedbacks', [FeedbackController::class, 'store'])->name('feedback.store');
+Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::get('/ver-feedbacks', [FeedbackController::class, 'showFeedbackView'])->name('feedback.view');
+Route::get('/feedbacks/manisfestacao/{id}', [FeedbackController::class, 'show'])->name('feedback.show');

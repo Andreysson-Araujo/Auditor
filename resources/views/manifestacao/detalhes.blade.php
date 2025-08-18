@@ -63,7 +63,10 @@
 
     <br>
     <a href="{{ route('manifestacoes') }}" class="btn-ver">Voltar</a>
-    <a href="{{ route('feedback.view') }}" class="btn-aud">Auditar</a>
+   
+    <a href="{{ route('feedback.show', ['id' => $formulario->id]) }}" class="btn-aud">Auditar</a>
+  
+
 
     
 </div>

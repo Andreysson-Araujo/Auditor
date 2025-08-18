@@ -12,7 +12,8 @@ class Feedback extends Model
     protected $fillable = [
         'formulario_id',
         'user_id',
-        'mensagem'
+        'mensagem',
+        'confirm'
     ];
 
     public function user()

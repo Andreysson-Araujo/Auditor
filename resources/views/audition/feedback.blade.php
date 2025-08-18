@@ -1,48 +1,20 @@
-@extends('layouts.app')
-
-@section('title', 'Auditar')
+@extends('layouts.header')
+@section('title', 'Detalhes da Manifestação')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Auditoria de Feedbacks</h1>
+    <h1>Feedback da Manifestação</h1>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Usuário</th>
-                <th>Formulário</th>
-                <th>Mensagem</th>
-                <th>Auditado</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($feedbacks as $feedback)
-                <tr>
-                    <td>{{ $feedback->user->name }}</td>
-                    <td>#{{ $feedback->formulario_id }}</td>
-                    <td>{{ $feedback->mensagem }}</td>
-                    <td>
-                        @if($feedback->formulario->auditado)
-                            ✅
-                        @else
-                            ❌
-                        @endif
-                    </td>
-                    <td>
-                        @if(!$feedback->formulario->auditado)
-                        <form method="POST" action="{{ route('formularios.audit', $feedback->formulario_id) }}">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-sm btn-success">Marcar como auditado</button>
-                        </form>
-                        @else
-                            <span class="text-muted">Já auditado</span>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
+    <p>Manifestação ID: {{ $formulario->id }}</p>
+    <p>Título: {{ $formulario->titulo ?? 'Sem título' }}</p>
+    <p>Descrição: {{ $formulario->descricao ?? 'Sem descrição' }}</p>
+
+    <form action="{{ route('feedback.store') }}" method="POST">
+        @csrf
+        <input type="hidden" name="formulario_id" value="{{ $formulario->id }}">
+        <div>
+            <label for="mensagem">Mensagem:</label>
+            <textarea name="mensagem" id="mensagem" required></textarea>
+        </div>
+        <button type="submit">Enviar Feedback</button>
+    </form>
 @endsection

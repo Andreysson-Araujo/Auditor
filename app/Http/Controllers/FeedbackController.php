@@ -5,46 +5,50 @@ namespace App\Http\Controllers;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Formulario;
 
 class FeedbackController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:sanctum');
-    }
+    public function __construct() {}
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'formulario_id' => 'required|exists:formularios,id',
-            'mensagem' => 'required|string|max:1000',
+            'mensagem' => 'required|string',
         ]);
 
-        $feedback = Feedback::create([
-            'formulario_id' => $validated['formulario_id'],
-            'user_id' => Auth::id(),
-            'mensagem' => $validated['mensagem'],
+        Feedback::create([
+            'formulario_id' => $request->formulario_id,
+            'user_id' => auth()->id(), // se estiver autenticado
+            'mensagem' => $request->mensagem,
+            'confirm' => false,
         ]);
+        // Marca o formulário como auditado
+        $formulario = Formulario::findOrFail($request->formulario_id);
+        $formulario->auditado = true;
+        $formulario->save();
 
-        return response()->json([
-            'message' => 'Feedback enviado com sucesso.',
-            'data' => $feedback
-        ], 201);
+        return redirect()->route('manifestacoes')
+                     ->with('success', 'Feedback salvo e manifestação auditada!');
     }
+
 
 
     // (Opcional) listar feedbacks
     public function index()
     {
-        return Feedback::with(['user', 'formulario'])->get();
-    }
+        $feedbacks = Feedback::with(['user', 'formulario'])->get();
+
+        return view('feedbacks.show', compact('formulario'));    }
 
     // (Opcional) mostrar um feedback específico
     public function show($id)
     {
-        $feedback = Feedback::with(['user', 'formulario'])->findOrFail($id);
-        return response()->json($feedback);
+        $formulario = Formulario::findOrFail($id);
+        return view('audition.feedback', compact('formulario'));
     }
+
 
     public function showFeedbackView()
     {
