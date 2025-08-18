@@ -2,19 +2,25 @@
 @section('title', 'Detalhes da Manifestação')
 
 @section('content')
-    <h1>Feedback da Manifestação</h1>
+    <div class="feedback-container">
+        <h1 class="feedback-title">Feedback da Manifestação</h1>
 
-    <p>Manifestação ID: {{ $formulario->id }}</p>
-    <p>Título: {{ $formulario->titulo ?? 'Sem título' }}</p>
-    <p>Descrição: {{ $formulario->descricao ?? 'Sem descrição' }}</p>
-
-    <form action="{{ route('feedback.store') }}" method="POST">
-        @csrf
-        <input type="hidden" name="formulario_id" value="{{ $formulario->id }}">
-        <div>
-            <label for="mensagem">Mensagem:</label>
-            <textarea name="mensagem" id="mensagem" required></textarea>
+        <div class="formulario-info">
+            <p><strong>Manifestação de N°:</strong> {{ $formulario->id ? str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</p>
+            <p><strong>Formulario respondido por:</strong> {{ $formulario->servidor->nome ?? 'Sem título' }}</p>
+            <p><strong>Respondido em:</strong> {{ $formulario->created_at->format('d/m/Y') ?? 'Sem descrição' }}</p>
         </div>
-        <button type="submit">Enviar Feedback</button>
-    </form>
+
+        <form action="{{ route('feedback.store') }}" method="POST" class="feedback-form">
+            @csrf
+            <input type="hidden" name="formulario_id" value="{{ $formulario->id }}">
+            
+            <div class="form-group">
+                <label for="mensagem">Mensagem:</label>
+                <textarea name="mensagem" id="mensagem" required class="textarea-feedback"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-feedback">Enviar Feedback</button>
+        </form>
+    </div>
 @endsection
