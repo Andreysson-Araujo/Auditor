@@ -16,7 +16,7 @@
             <a href="{{ route('manifestacoes') }}">Manifestações</a>
             <form action="{{ route('logout') }}" method="POST" class="logout-form">
                 @csrf
-                <button type="submit">Sair</button>
+                <button  type="submit">Sair</button>
             </form>
         </nav>
     </header>
