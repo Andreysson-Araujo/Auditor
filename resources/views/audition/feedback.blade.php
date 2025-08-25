@@ -16,7 +16,7 @@
             <input type="hidden" name="formulario_id" value="{{ $formulario->id }}">
             
             <div class="form-group">
-                <label for="mensagem">Mensagem:</label>
+                <label for="mensagem" class="msg-container"> <strong>Mensagem:</strong></label>
                 <textarea name="mensagem" id="mensagem" required class="textarea-feedback"></textarea>
             </div>
             

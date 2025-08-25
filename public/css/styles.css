@@ -157,8 +157,13 @@ header form button:hover {
 /* Informações do formulário */
 .formulario-info p {
     margin: 5px 0;
-    font-size: 14px;
-    color: #555;
+    font-size: 16px;
+    color: #000000;
+}
+
+.msg-container {
+    font-size: 16px;
+    color: #000000; 
 }
 
 /* Grupo do form */
