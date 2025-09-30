@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th>Resgistro</th>
-                <th>Classificação</th>
+              
                 <th>Data</th>
                 <th>Auditar</th>
                
@@ -39,7 +39,7 @@
                        <span>{{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</span> 
                     </td>
                     
-                   <td>{{ $formulario->classificate }}</td>
+                   
                    <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
                    <td>
                     <a href="{{ route('manifestacao.ver', $formulario->id) }}" class="btn-ver">Ver</a>
