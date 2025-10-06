@@ -51,7 +51,7 @@
         <thead>
             <tr>
                 <th>Orgão</th>
-                <th>Classificação</th>
+                <th>Central</th>
                 <th>Data</th>
             </tr>
         </thead>
@@ -59,7 +59,7 @@
             @foreach($formulariosFiltrados as $formulario)
                 <tr>
                     <td>{{ $formulario->servidor->orgao->nome ?? 'Não informado' }}</td>
-                    <td>{{ $formulario->classificate }}</td>
+                    <td>{{ $formulario->servidor->central->nome ?? "Sem Central" }}</td>
                     <td>{{ $formulario->created_at->format('d/m/Y') }}</td>
                 </tr>
             @endforeach
