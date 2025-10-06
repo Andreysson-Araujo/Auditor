@@ -14,6 +14,7 @@ class Servidor extends Model
     protected $fillable = [
         'nome',
         'orgao_id',
+        'central_id'
     ];
 
     public function orgao()
@@ -24,5 +25,10 @@ class Servidor extends Model
     public function formularios()
     {
         return $this->hasMany(Formulario::class, 'servidores_id');
+    }
+
+    public function central()
+    {
+        return $this->belongsTo(Central::class, 'central_id');
     }
 }

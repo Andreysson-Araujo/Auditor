@@ -10,7 +10,7 @@ class ManifestacaoController extends Controller
     {
         $data = request('data'); // Pega a data da URL
     
-        $query = Formulario::with('servidor.orgao')
+        $query = Formulario::with('servidor.orgao', 'servidor.central')
             ->orderBy('created_at', 'desc');
     
         if ($data) {
@@ -24,7 +24,7 @@ class ManifestacaoController extends Controller
 
     public function ver($id)
 {
-    $formulario = Formulario::with('servidor.orgao')->findOrFail($id);
+    $formulario = Formulario::with('servidor.orgao', 'servidor.central')->findOrFail($id);
     return view('manifestacao.detalhes', compact('formulario'));
 }
 public function auditar($id)

@@ -23,10 +23,11 @@
         <thead>
             <tr>
                 <th>Resgistro</th>
-              
+                
                 <th>Data</th>
+                <th>Central</th>
                 <th>Auditar</th>
-               
+                
             </tr>
         </thead>
         <tbody>
@@ -39,8 +40,12 @@
                        <span>{{ $formulario->id ? 'nº ' . str_pad($formulario->id, 6, '0', STR_PAD_LEFT) : 'Não Informado' }}</span> 
                     </td>
                     
-                   
-                   <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
+                    <td>
+                        {{ $formulario->servidor?->central?->nome ?? 'Sem central' }}
+                     </td>
+                     
+                    
                    <td>
                     <a href="{{ route('manifestacao.ver', $formulario->id) }}" class="btn-ver">Ver</a>
                 </td>
