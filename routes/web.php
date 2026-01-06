@@ -6,6 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ManifestacaoController;
 use App\Http\Controllers\RelatorioController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\PerguntaController;
+use App\Http\Controllers\PilarController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,3 +49,5 @@ Route::post('/feedbacks', [FeedbackController::class, 'store'])->name('feedback.
 Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/ver-feedbacks', [FeedbackController::class, 'showFeedbackView'])->name('feedback.view');
 Route::get('/feedbacks/manisfestacao/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
+Route::resource('perguntas', PerguntaController::class);
+Route::resource('pilares', PilarController::class);
