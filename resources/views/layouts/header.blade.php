@@ -22,7 +22,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('perguntas.index') }}">Perguntas</a>
-                        <a class="dropdown-item" >Usuários</a>
+                        <a class="dropdown-item" href="{{ route('usuarios.index') }} ">Usuários</a>
                     </div>
                 </div>
 

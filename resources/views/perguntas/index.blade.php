@@ -3,17 +3,9 @@
 @section('title', 'Listagem de Perguntas')
 
 @section('content')
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="mb-0">Gestão de Perguntas</h2>
-                <small class="text-muted">Lista de perguntas cadastradas por ID de Pilar</small>
-            </div>
-            <a href="{{ route('perguntas.create') }}" class="btn btn-primary shadow-sm">
-                Nova Pergunta
-            </a>
-        </div>
-
+    <div class="container mt-5">
+       
+        <h1>ASDA</h1>
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}

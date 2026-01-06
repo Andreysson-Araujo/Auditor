@@ -147,6 +147,17 @@ header form button:hover {
     background-color: #f9f9f9;
 }
 
+.generic-container {
+    max-width: 800px;
+    margin: 7rem auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+
+
 /* Título */
 .feedback-title {
     text-align: center;

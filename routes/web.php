@@ -51,3 +51,4 @@ Route::get('/ver-feedbacks', [FeedbackController::class, 'showFeedbackView'])->n
 Route::get('/feedbacks/manisfestacao/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
 Route::resource('perguntas', PerguntaController::class);
 Route::resource('pilares', PilarController::class);
+Route::resource('usuarios', UserController::class);
