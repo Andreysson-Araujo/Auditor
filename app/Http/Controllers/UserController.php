@@ -89,7 +89,7 @@ class UserController extends Controller
 
         //Procedimento de Validação
         $request->validate([
-            'nome' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email'   => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:8|confirmed',
         ]);
@@ -105,6 +105,12 @@ class UserController extends Controller
 
         $usuario->update($dados);
         return redirect()->route('usuarios.index')->with('success', 'Usuário atualizado com sucesso!');
+    }
+
+    public function edit(string $id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
     }
 
     public function destroy(string $id)
