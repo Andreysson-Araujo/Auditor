@@ -45,7 +45,7 @@
                             <td>{{ $usuario->created_at->format('d/m/Y H:i') }}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-sm btn-outline-warning">
+                                    <a href="{{ route('usuarios.update', $usuario->id) }}" class="btn btn-sm btn-outline-warning">
                                         Editar
                                     </a>
                                     

@@ -50,7 +50,7 @@ class UserController extends Controller
     /* ===== CRIAÇÃO DE USUÁRIO ===== */
     /* ===== CRIAÇÃO DE USUÁRIO ===== */
     // Mude de showCreateForm para create
-    public function create() 
+    public function create()
     {
         return view('usuarios.create');
     }
@@ -60,7 +60,7 @@ class UserController extends Controller
         $request->validate([
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:3|confirmed',
+            'password' => 'required|min:8|confirmed',
         ]);
 
         User::create([
@@ -73,6 +73,39 @@ class UserController extends Controller
         // ALTERAÇÃO AQUI: Redireciona para a lista de usuários com a mensagem
         return redirect()->route('usuarios.index')->with('success', 'Usuário criado com sucesso!');
     }
+    /**
+     * Exibir os detalhes de um usuário específico.
+     */
+    public function show(string $id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
+    }
+
+
+    public function update(Request $request, string $id)
+    {
+        $usuario = User::findOrFail($id);
+
+        //Procedimento de Validação
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'email'   => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:8|confirmed',
+        ]);
+
+        $dados = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($request->filled("password")) {
+            $dados["password"] = Hash::make($request->password);
+        }
+
+        $usuario->update($dados);
+        return redirect()->route('usuarios.index')->with('success', 'Usuário atualizado com sucesso!');
+    }
 
     public function destroy(string $id)
     {
@@ -80,6 +113,5 @@ class UserController extends Controller
         $usuario->delete();
 
         return redirect()->route('usuarios.index')->with('success', 'Usuário removido com sucesso!');
-    
     }
 }
