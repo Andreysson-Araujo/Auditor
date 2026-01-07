@@ -48,9 +48,11 @@ class UserController extends Controller
     }
 
     /* ===== CRIAÇÃO DE USUÁRIO ===== */
-    public function showCreateForm()
+    /* ===== CRIAÇÃO DE USUÁRIO ===== */
+    // Mude de showCreateForm para create
+    public function create() 
     {
-        return view('users.create');
+        return view('usuarios.create');
     }
 
     public function store(Request $request)
