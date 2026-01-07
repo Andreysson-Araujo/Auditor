@@ -70,6 +70,16 @@ class UserController extends Controller
             'password'          => Hash::make($request->password),
         ]);
 
-        return redirect('/login')->with('success', 'Usuário criado com sucesso!');
+        // ALTERAÇÃO AQUI: Redireciona para a lista de usuários com a mensagem
+        return redirect()->route('usuarios.index')->with('success', 'Usuário criado com sucesso!');
+    }
+
+    public function destroy(string $id)
+    {
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuário removido com sucesso!');
+    
     }
 }
