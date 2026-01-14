@@ -1,6 +1,6 @@
 @extends('layouts.header')
 
-@section('title', 'Coleta de dados')
+@section('title', 'Dashboard')
 
 @section('content')
     <h1 class="marginGraph" >Dashboard - Servidores por Nível</h1>

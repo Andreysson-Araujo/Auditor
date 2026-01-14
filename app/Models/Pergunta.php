@@ -19,4 +19,5 @@ class Pergunta extends Model
     {
         return $this->belongsTo(Pilar::class, 'pilar_id');
     }
+    
 }
