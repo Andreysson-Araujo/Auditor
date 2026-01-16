@@ -4,53 +4,36 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resposta;
-use Illuminate\Support\Facades\DB;
-use App\Models\Formulario;
 
 class ManifestacaoController extends Controller
 {
-    // No ManifestacaoController.php
-public function show()
-{
-    $data = request('data');
+    public function show()
+    {
+        // Vamos dar um "dump" para ver se o banco retorna algo
+        $teste = \App\Models\Resposta::all();
 
-    // Carrega tudo em uma única consulta ao banco
-    $query = Formulario::with(['servidor.orgao', 'servidor.central'])
-                        ->orderBy('created_at', 'desc');
+        if ($teste->isEmpty()) {
+            return "O banco retornou ZERO registros. Verifique o nome da tabela no Model Resposta.";
+        }
 
-    if ($data) {
-        $query->whereDate('created_at', $data);
+        // Se houver dados, o código abaixo vai listar tudo sem filtros
+        $formularios = \App\Models\Resposta::with(['servidor.orgao', 'servidor.central'])
+            ->select('servidor_id', 'created_at', 'classificacao_geral')
+            ->groupBy('servidor_id', 'created_at', 'classificacao_geral')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('manifestacao.showManifestacao', compact('formularios'));
     }
 
-    $formularios = $query->paginate(10);
-
-    return view('manifestacao.showManifestacao', compact('formularios', 'data'));
-}
-
-    public function ver($id)
+    public function ver($servidor_id, $data)
     {
-        // 1. Busca o feedback (cabeçalho/auditoria)
-        $formulario = \App\Models\Formulario::with('servidor')->findOrFail($id);
-
-        // 2. Busca as respostas ligadas a este servidor na mesma data
+        // Busca os detalhes das respostas para a tela de detalhes
         $respostas = Resposta::with('pergunta')
-            ->where('servidor_id', $formulario->servidores_id)
-            ->whereDate('created_at', $formulario->created_at->format('Y-m-d'))
+            ->where('servidor_id', $servidor_id)
+            ->where('created_at', $data)
             ->get();
 
-        return view('manifestacao.detalhes', compact('formulario', 'respostas'));
-    }
-
-    public function auditar($id)
-    {
-        // A auditoria acontece na tabela feedback
-        $feedback = \App\Models\Formulario::findOrFail($id);
-        
-        // No seu diagrama a coluna de auditoria pode ter outro nome, 
-        // ajuste para o nome correto (ex: 'confirm' ou 'auditado')
-        $feedback->auditado = true; 
-        $feedback->save();
-
-        return redirect()->route('manifestacoes')->with('success', 'Auditado com sucesso!');
+        return view('manifestacao.detalhes', compact('respostas'));
     }
 }
