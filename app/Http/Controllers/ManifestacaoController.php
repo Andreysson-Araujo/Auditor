@@ -28,12 +28,19 @@ class ManifestacaoController extends Controller
 
     public function ver($servidor_id, $data)
     {
-        // Busca os detalhes das respostas para a tela de detalhes
-        $respostas = Resposta::with('pergunta')
+        // 1. Busca todas as respostas desse envio
+        $respostas = Resposta::with(['pergunta', 'servidor.orgao', 'servidor.central'])
             ->where('servidor_id', $servidor_id)
             ->where('created_at', $data)
             ->get();
 
-        return view('manifestacao.detalhes', compact('respostas'));
+        if ($respostas->isEmpty()) {
+            return redirect()->route('manifestacoes')->with('error', 'Manifestação não encontrada.');
+        }
+
+        // 2. Pegamos o primeiro registro para exibir os dados do servidor (nome, órgão, etc)
+        $cabecalho = $respostas->first();
+
+        return view('manifestacao.detalhes', compact('respostas', 'cabecalho'));
     }
 }

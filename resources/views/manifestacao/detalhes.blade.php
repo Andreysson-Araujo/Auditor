@@ -6,68 +6,75 @@
     <h1>Detalhes da Manifestação</h1>
 
     @php
-    $respostasTexto = [
-        1 => 'Insatisfeito',
-        2 => 'Pouco satisfeito',
-        3 => 'Satisfeito',
-        4 => 'Muito Satisfeito',
-    ];
-@endphp
+        $respostasTexto = [
+            1 => 'Insatisfeito',
+            2 => 'Pouco satisfeito',
+            3 => 'Satisfeito',
+            4 => 'Muito Satisfeito',
+        ];
+    @endphp
 
     <table class="manifestacao-table">
+        {{-- Dados do Servidor vindos da variável $cabecalho --}}
         <tr>
             <th>Servidor</th>
-            <td>{{ $formulario->servidor->nome ?? 'Não informado' }}</td>
+            <td>{{ $cabecalho->servidor->nome ?? 'Não informado' }}</td>
         </tr>
         <tr>
             <th>Órgão</th>
-            <td>{{ $formulario->servidor->orgao->nome ?? 'Não informado' }}</td>
+            <td>{{ $cabecalho->servidor->orgao->nome ?? 'Não informado' }}</td>
         </tr>
         <tr>
-            <th>Classificação</th>
-            <td>{{ $formulario->classificate }}</td>
+            <th>Central</th>
+            <td>{{ $cabecalho->servidor->central->nome ?? 'Não informado' }}</td>
         </tr>
         <tr>
             <th>Data de Envio</th>
-            <td>{{ $formulario->created_at->format('d/m/Y H:i') }}</td>
+            <td>{{ \Carbon\Carbon::parse($cabecalho->created_at)->format('d/m/Y H:i') }}</td>
         </tr>
         <tr>
-            <th>Comentário</th>
-            <td>{{ $formulario->comments ?? 'Sem comentário' }}</td>
+            <th>Classificação Geral</th>
+            <td>{{ $cabecalho->classificacao_geral ?? 'N/A' }}</td>
         </tr>
         <tr>
-            <th>Quanto às capacitações fornecidas pela OCA e sua aplicação na rotina de trabalho. Como você se sente?</th>
-            <td>{{ $respostasTexto[$formulario->answer_1] }}</td>
-        </tr>
-        <tr>
-            <th>Como você avalia o papel do seu líder?</th>
-            <td>{{ $respostasTexto [$formulario->answer_2] }}</td>
-        </tr>
-        <tr>
-            <th>Como você avalia a qualidade da comunicação com sua equipe e liderança no dia de trabalho?</th>
-            <td>{{$respostasTexto [$formulario->answer_3] }}</td>
-        </tr>
-        <tr>
-            <th>Como você avalia o ambiente de trabalho da OCA, considerando a infraestrutura, o acolhimento institucional, os valores da organização e as relações interpessoais?</th>
-            <td>{{$respostasTexto [$formulario->answer_4] }}</td>
-        </tr>
-        <tr>
-            <th>Em relação às ações promovidas para o bem-estar e qualidade de vida no trabalho. Como você se sente?</th>
-            <td>{{$respostasTexto [$formulario->answer_5] }}</td>
-        </tr>
-        <tr>
-            <th>Você faltou alguma das últimas 3 capacitações?</th>
-            <td>{{ $formulario->answer_6 }}</td>
+            <th>Comentários/Sugestões</th>
+            <td>{{ $cabecalho->comentarios ?? 'Sem comentários' }}</td>
         </tr>
     </table>
 
+    <h2 class="mt-4">Respostas do Questionário</h2>
+    <table class="manifestacao-table">
+        <thead>
+            <tr>
+                <th>Pergunta</th>
+                <th>Resposta</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($respostas as $resp)
+                <tr>
+                    <td style="width: 70%"><strong>{{ $resp->pergunta->titulo ?? 'Pergunta removida' }}</strong></td>
+                    <td>
+                        @if(is_numeric($resp->valor) && isset($respostasTexto[$resp->valor]))
+                            {{ $respostasTexto[$resp->valor] }}
+                        @else
+                            {{ $resp->valor }}
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
     <br>
-    <a href="{{ route('manifestacoes') }}" class="btn-ver">Voltar</a>
-   
-    <a href="{{ route('feedback.show', ['id' => $formulario->id]) }}" class="btn-aud">Auditar</a>
-  
-
-
-    
+    <div class="actions">
+        <a href="{{ route('manifestacoes') }}" class="btn-ver">Voltar</a>
+        
+        {{-- Botão de Auditoria ajustado para a nova lógica --}}
+        <form action="{{ route('manifestacoes.auditar', ['id' => $cabecalho->servidor_id, 'data' => $cabecalho->created_at]) }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="btn-aud" onclick="return confirm('Confirmar auditoria?')">Auditar</button>
+        </form>
+    </div>
 </div>
 @endsection

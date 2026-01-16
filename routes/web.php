@@ -49,6 +49,8 @@ Route::post('/feedbacks', [FeedbackController::class, 'store'])->name('feedback.
 Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::get('/ver-feedbacks', [FeedbackController::class, 'showFeedbackView'])->name('feedback.view');
 Route::get('/feedbacks/manisfestacao/{id}', [FeedbackController::class, 'show'])->name('feedback.show');
+// Altere esta linha no seu routes/web.php
+Route::get('/manifestacao/ver/{servidor}/{data}', [ManifestacaoController::class, 'ver'])->name('manifestacao.ver');
 Route::resource('perguntas', PerguntaController::class);
 Route::resource('pilares', PilarController::class);
 Route::resource('usuarios', UserController::class);
